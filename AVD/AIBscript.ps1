@@ -81,12 +81,12 @@ $imageDefName ="win11avd"
 New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
 
 # create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd'
+New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
 
 
 
 $templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/localize.json"
-$templateFilePath = "armTemplateWVD.json"
+$templateFilePath = "localize.json"
 
 Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 
