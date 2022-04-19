@@ -48,8 +48,8 @@
             "source": {
                 "type": "PlatformImage",
                     "publisher": "MicrosoftWindowsDesktop",
-                    "offer": "windows-10",
-                    "sku": "20h1-ent",
+                    "offer": "windows-11",
+                    "sku": "21h2-ent",
                     "version": "latest"
             },
             "customize": [
@@ -105,8 +105,8 @@
                     "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
-                        "source": "wvd10",
-                        "baseosimg": "windows10"
+                        "source": "avd11",
+                        "baseosimg": "windows11"
                     },
                     "replicationRegions": [
                       "<region1>"
