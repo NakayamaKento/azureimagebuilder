@@ -7,12 +7,6 @@ $mountResult = Mount-DiskImage C:\lang.iso -PassThru
 #マウントしたISOのドライブレターを取得します。
 $driveLetter = ($mountResult | Get-Volume).DriveLetter
 
-#パスを格納
-$lppath = $driveLetter + ":\x64\langpacks\Microsoft-Windows-Server-Language-Pack_x64_ja-jp.cab"
-
-#「Lpksetup.exe」コマンドを使って日本語languagePackをインストールします。インストール後再起動します。
-#C:\windows\system32\Lpksetup.exe /i ja-JP /f /s /p $lppath
-
 
 Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup"
 Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove"
@@ -23,10 +17,9 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Control Panel\Internatio
 $LIPContent = $driveLetter + ":\LanguagesAndOptionalFeatures\"
 
 ##Set Path of CSV File##
-## NEED TO INSTALL CSV###
 $CSVFile = "Windows-10-1809-FOD-to-LP-Mapping-Table.csv"
 $filePath = (Get-Location).Path + "/$CSVFile"
-
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Windows-10-1809-FOD-to-LP-Mapping-Table.csv -OutFile $filePath
 
 ##Import Necesarry CSV File##
 $FODList = Import-Csv -Path $filePath -Delimiter ";"
