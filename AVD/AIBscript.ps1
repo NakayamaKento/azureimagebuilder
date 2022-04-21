@@ -19,7 +19,7 @@ Import-Module Az.Accounts
 $currentAzContext = Get-AzContext
 
 # destination image resource group
-$imageResourceGroup="avdImageDemoRg3"
+$imageResourceGroup="avdImageDemoRg"
 
 # location (see possible locations in main docs)
 $location="westus2"
@@ -75,7 +75,7 @@ New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $ima
 
 
 
-$sigGalleryName= "myaibsig01"
+$sigGalleryName= "myaibsig"
 $imageDefName ="win11avd"
 
 # create gallery
