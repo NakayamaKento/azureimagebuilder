@@ -9,3 +9,4 @@ Set-WinLanguageBarOption -UseLegacySwitchMode -UseLegacyLanguageBar
 
 #サーバーを再起動します。
 #Restart-Computer
+
