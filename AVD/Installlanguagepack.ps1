@@ -84,3 +84,4 @@ $LanguageList = Get-WinUserLanguageList
 $LanguageList.Add("$targetlanguage")
 Set-WinUserLanguageList $LanguageList -force
 
+Write-Output "xxxxx 7th xxxxx"
