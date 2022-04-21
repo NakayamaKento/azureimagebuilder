@@ -36,6 +36,7 @@ if(!($sourceLanguage)){
 
 $langGroup = (($FODList | Where-Object {$_.'Target Lang' -eq $targetLanguage}) | Where-Object {$_.'Lang Group:' -ne ""} | Select-Object -Property 'Lang Group:' -Unique).'Lang Group:'
 
+Write-Output "xxxxx 1st xxxxx"
 
 ##List of additional features to be installed##
 $additionalFODList = @(
@@ -45,6 +46,8 @@ $additionalFODList = @(
     #"$LIPContent\Microsoft-Windows-Lip-Language_x64_$sourceLanguage.cab" ##only if applicable## #Do not need for ja-jp#
 )
 
+Write-Output "xxxxx 2nd xxxxx"
+
 $additionalCapabilityList = @(
  "Language.Basic~~~$sourceLanguage~0.0.1.0",
  "Language.Handwriting~~~$sourceLanguage~0.0.1.0",
@@ -53,6 +56,7 @@ $additionalCapabilityList = @(
  "Language.TextToSpeech~~~$sourceLanguage~0.0.1.0"
  )
 
+ Write-Output "xxxxx 3rd xxxxx"
 
 ##Install all FODs or fonts from the CSV file###
 Dism /Online /Add-Package /PackagePath:$LIPContent\Microsoft-Windows-Client-Language-Pack_x64_$sourceLanguage.cab
@@ -61,13 +65,19 @@ foreach($capability in $additionalCapabilityList){
     Dism /Online /Add-Capability /CapabilityName:$capability /Source:$LIPContent
 }
 
+Write-Output "xxxxx 4th xxxxx"
+
 foreach($feature in $additionalFODList){
     Dism /Online /Add-Package /PackagePath:$feature
 }
 
+Write-Output "xxxxx 5th xxxxx"
+
 if($langGroup){
     Dism /Online /Add-Capability /CapabilityName:Language.Fonts.$langGroup~~~und-$langGroup~0.0.1.0 
 }
+
+Write-Output "xxxxx 6th xxxxx"
 
 ##Add installed language to language list##
 $LanguageList = Get-WinUserLanguageList
