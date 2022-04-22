@@ -85,50 +85,6 @@
                         "runElevated": true,
                         "runAsSystem": true,
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Installlanguagepack.ps1"
-                    },
-                    {
-                        "type": "WindowsUpdate",
-                        "searchCriteria": "IsInstalled=0",
-                        "filters": [
-                            "exclude:$_.Title -like '*Preview*'",
-                            "include:$true"
-                                    ],
-                        "updateLimit": 40
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "Japanese_Setting",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/JapaneseSetting.ps1"
-                    },
-                    {
-                        "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting post Teams Japanese Setting'",
-                        "restartTimeout": "5m"
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "SettingTimeZone",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/SettingTimeZone.ps1"
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "Uninstall_en-us",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Uninstalles-es.ps1"
-                    },
-                    {
-                        "type": "WindowsUpdate",
-                        "searchCriteria": "IsInstalled=0",
-                        "filters": [
-                            "exclude:$_.Title -like '*Preview*'",
-                            "include:$true"
-                                    ],
-                        "updateLimit": 40
                     }
             ],
             "distribute": 
