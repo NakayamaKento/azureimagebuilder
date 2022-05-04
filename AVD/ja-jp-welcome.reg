@@ -1,0 +1,89 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_USERS\.DEFAULT\Control Panel\International]
+"Locale"="00000411"
+"LocaleName"="ja-JP"
+"s1159"="午前"
+"s2359"="午後"
+"sCountry"="Japan"
+"sCurrency"="\"
+"sDate"="/"
+"sDecimal"="."
+"sGrouping"="3;0"
+"sLanguage"="JPN"
+"sList"=","
+"sLongDate"="yyyy'年'M'月'd'日'"
+"sMonDecimalSep"="."
+"sMonGrouping"="3;0"
+"sMonThousandSep"=","
+"sNativeDigits"="0123456789"
+"sNegativeSign"="-"
+"sPositiveSign"=""
+"sShortDate"="yyyy/MM/dd"
+"sThousand"=","
+"sTime"=":"
+"sTimeFormat"="H:mm:ss"
+"sShortTime"="H:mm"
+"sYearMonth"="yyyy'年'M'月'"
+"iCalendarType"="1"
+"iCountry"="81"
+"iCurrDigits"="0"
+"iCurrency"="0"
+"iDate"="2"
+"iDigits"="2"
+"NumShape"="1"
+"iFirstDayOfWeek"="6"
+"iFirstWeekOfYear"="0"
+"iLZero"="1"
+"iMeasure"="0"
+"iNegCurr"="1"
+"iNegNumber"="1"
+"iPaperSize"="9"
+"iTime"="1"
+"iTimePrefix"="0"
+"iTLZero"="0"
+
+[HKEY_USERS\.DEFAULT\Control Panel\International\Geo]
+"Name"="JP"
+"Nation"="122"
+
+[HKEY_USERS\.DEFAULT\Control Panel\International\User Profile]
+"Languages"=hex(7):6a,00,61,00,00,00,65,00,6e,00,2d,00,55,00,53,00,00,00
+"ShowAutoCorrection"=dword:00000001
+"ShowTextPrediction"=dword:00000001
+"ShowCasing"=dword:00000001
+"ShowShiftLock"=dword:00000001
+
+[HKEY_USERS\.DEFAULT\Control Panel\International\User Profile\ja]
+"CachedLanguageName"="@Winlangdb.dll,-1230"
+"0411:{03B5835F-F03C-411B-9CE2-AA23E1171E36}{A76C93D9-5523-4E90-AAFA-4DB112F9AC76}"=dword:00000001
+
+[HKEY_USERS\.DEFAULT\Control Panel\International\User Profile System Backup]
+"Languages"=hex(7):6a,00,61,00,00,00,65,00,6e,00,2d,00,55,00,53,00,00,00
+"ShowAutoCorrection"=dword:00000001
+"ShowTextPrediction"=dword:00000001
+"ShowCasing"=dword:00000001
+"ShowShiftLock"=dword:00000001
+
+[HKEY_USERS\.DEFAULT\Control Panel\International\User Profile System Backup\ja]
+"0411:{03B5835F-F03C-411B-9CE2-AA23E1171E36}{A76C93D9-5523-4E90-AAFA-4DB112F9AC76}"=dword:00000001
+
+[HKEY_USERS\.DEFAULT\Keyboard Layout]
+
+[HKEY_USERS\.DEFAULT\Keyboard Layout\Preload]
+"1"="00000411"
+"2"="00000409"
+
+[HKEY_USERS\.DEFAULT\Keyboard Layout\Substitutes]
+
+[HKEY_USERS\.DEFAULT\Keyboard Layout\Toggle]
+"Hotkey"="1"
+
+[HKEY_USERS\.DEFAULT\Control Panel\Desktop\MuiCached]
+"MachinePreferredUILanguages"=hex(7):6a,00,61,00,2d,00,4a,00,50,00,00,00,00,00
+
+[HKEY_USERS\.DEFAULT\Control Panel\Desktop]
+"PreferredUILanguages"=hex(7):6a,00,61,00,2d,00,4a,00,50,00,00,00,00,00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\MUI\Settings]
+"PreferredUILanguages"=hex(7):6a,00,61,00,2d,00,4a,00,50,00,00,00,00,00

@@ -19,7 +19,7 @@ Import-Module Az.Accounts
 $currentAzContext = Get-AzContext
 
 # destination image resource group
-$imageResourceGroup="avdImageDemoRg"
+$imageResourceGroup="avdImage-Rg"
 
 # location (see possible locations in main docs)
 $location="japaneast"
@@ -28,7 +28,7 @@ $location="japaneast"
 $subscriptionID=$currentAzContext.Subscription.Id
 
 # image template name
-$imageTemplateName="avd11ImageTemplate01"
+$imageTemplateName="avd11ImageTemplate_japanese"
 
 # distribution properties object name (runOutput), i.e. this gives you the properties of the managed image on completion
 $runOutputName="sigOutput"

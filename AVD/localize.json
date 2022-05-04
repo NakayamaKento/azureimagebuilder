@@ -31,7 +31,7 @@
             "identity": {
                 "type": "UserAssigned",
                         "userAssignedIdentities": {
-                        "/subscriptions/4ae03ad0-1989-4a6d-8e49-0cd8588ec3e7/resourcegroups/avdImageDemoRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1650808884": {}
+                        "/subscriptions/0b11dcba-e984-4c39-b2f0-9abba02b7e67/resourcegroups/avdImageDemoRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1650808884": {}
                             
                     }
                     },
@@ -112,16 +112,14 @@
             [
                 {   
                     "type": "SharedImage",
-                    "galleryImageId": "/subscriptions/4ae03ad0-1989-4a6d-8e49-0cd8588ec3e7/resourceGroups/avdImageDemoRg/providers/Microsoft.Compute/galleries/myaibsig/images/win11avd",
+                    "galleryImageId": "/subscriptions/0b11dcba-e984-4c39-b2f0-9abba02b7e67/resourceGroups/avdImage-Rg/providers/Microsoft.Compute/galleries/myaibsig/images/win11avd",
                     "runOutputName": "sigOutput",
                     "artifactTags": {
                         "source": "avd11",
                         "baseosimg": "windows11"
                     },
                     "replicationRegions": [
-                      "westus2",
                       "japaneast"
-
                     ]
                 }
             ]
@@ -131,6 +129,14 @@
     
     ]
 }    
+
+
+
+
+
+
+
+
 
 
 
