@@ -22,7 +22,7 @@ $currentAzContext = Get-AzContext
 $imageResourceGroup="avdImageDemoRg"
 
 # location (see possible locations in main docs)
-$location="westus2"
+$location="japaneast"
 
 # your subscription, this will get your current subscription
 $subscriptionID=$currentAzContext.Subscription.Id
