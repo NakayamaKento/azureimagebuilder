@@ -28,17 +28,14 @@
             "imagebuilderTemplate": "AzureImageBuilderSIG",
             "userIdentity": "enabled"
                 },
-            "identity": {
-                "type": "UserAssigned",
-                        "userAssignedIdentities": {
-                        "/subscriptions/0b11dcba-e984-4c39-b2f0-9abba02b7e67/resourcegroups/avdImageDemoRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1650808884": {}
-                            
+        "identity": {
+            "type": "UserAssigned",
+                    "userAssignedIdentities": {
+                    "<imgBuilderId>": {}
                     }
-                    },
-        
+                },
         "properties": {
             "buildTimeoutInMinutes" : 240,
-
             "vmProfile": 
                     {
                     "vmSize": "Standard_D4d_v4",
@@ -112,14 +109,14 @@
             [
                 {   
                     "type": "SharedImage",
-                    "galleryImageId": "/subscriptions/0b11dcba-e984-4c39-b2f0-9abba02b7e67/resourceGroups/avdImage-Rg/providers/Microsoft.Compute/galleries/myaibsig/images/win11avd",
-                    "runOutputName": "sigOutput",
+                    "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
+                    "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "avd11",
                         "baseosimg": "windows11"
                     },
                     "replicationRegions": [
-                      "japaneast"
+                      "<region1>"
                     ]
                 }
             ]
