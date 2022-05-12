@@ -1,4 +1,4 @@
-Write-Output "xxxxx 8th xxxxx"
+Write-Output "Start JapaneseSetting.ps1"
 
 #ユーザーが使用する言語を日本語にします。
 Set-WinUserLanguageList -LanguageList ja-JP,en-US -Force
@@ -12,4 +12,4 @@ Set-WinLanguageBarOption -UseLegacySwitchMode -UseLegacyLanguageBar
 #サーバーを再起動します。
 #Restart-Computer
 
-Write-Output "xxxxx 9th xxxxx"
+Write-Output "Finish JapaneseSetting.ps1"
