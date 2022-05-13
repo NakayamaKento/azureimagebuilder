@@ -90,6 +90,18 @@
                     },
                     {
                         "type": "PowerShell",
+                        "name": "RegSettinge",
+                        "runElevated": true,
+                        "runAsSystem": true,
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/RegSetting.ps1"
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartCheckCommand": "write-host 'restarting after Registry Setting'",
+                        "restartTimeout": "5m"
+                    },
+                    {
+                        "type": "PowerShell",
                         "name": "Uninstall_en-us",
                         "runElevated": true,
                         "runAsSystem": true,
