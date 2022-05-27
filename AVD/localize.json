@@ -95,21 +95,9 @@
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/RegSetting.ps1"
                     },
                     {
-                        "type": "PowerShell",
-                        "name": "Uninstall_en-us",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Uninstalles-es.ps1"
-                    },
-                    {
-                        "type": "WindowsUpdate",
-                        "name": "Finale process",
-                        "searchCriteria": "IsInstalled=0",
-                        "filters": [
-                            "exclude:$_.Title -like '*Preview*'",
-                            "include:$true"
-                                    ],
-                        "updateLimit": 40
+                        "type": "WindowsRestart",
+                        "restartCheckCommand": "write-host 'restarting after Registry Setting'",
+                        "restartTimeout": "5m"
                     }
             ],
             "distribute":
