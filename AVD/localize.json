@@ -71,21 +71,11 @@
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/JapaneseSetting.ps1"
                     },
                     {
-                        "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting after Japanese Setting'",
-                        "restartTimeout": "5m"
-                    },
-                    {
                         "type": "PowerShell",
                         "name": "SettingTimeZone",
                         "runElevated": true,
                         "runAsSystem": true,
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/SettingTimeZone.ps1"
-                    },
-                    {
-                        "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting after time zone Setting'",
-                        "restartTimeout": "5m"
                     },
                     {
                         "type": "PowerShell",
@@ -98,6 +88,23 @@
                         "type": "WindowsRestart",
                         "restartCheckCommand": "write-host 'restarting after Registry Setting'",
                         "restartTimeout": "5m"
+                    },
+                    {
+                        "type": "PowerShell",
+                        "name": "Uninstall_en-us",
+                        "runElevated": true,
+                        "runAsSystem": true,
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Uninstalles-es.ps1"
+                    },
+                    {
+                        "type": "WindowsUpdate",
+                        "name": "Finale process",
+                        "searchCriteria": "IsInstalled=0",
+                        "filters": [
+                            "exclude:$_.Title -like '*Preview*'",
+                            "include:$true"
+                                    ],
+                        "updateLimit": 40
                     }
             ],
             "distribute":
