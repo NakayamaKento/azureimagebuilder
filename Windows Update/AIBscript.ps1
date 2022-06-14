@@ -95,8 +95,8 @@ New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $im
 
 
 
-$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/localize.json"
-$templateFilePath = "localize.json"
+$templateUrl="https://github.com/NakayamaKento/azureimagebuilder/blob/windows_update/Windows%20Update/WindowsUpdate.json"
+$templateFilePath = "WindowsUpdate.json"
 
 $sourceimageinfo = Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -GalleryImageVersionName $sourceversion
 
