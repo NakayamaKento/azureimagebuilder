@@ -49,10 +49,6 @@ $year = (get-date).Year
 $month = (get-date).Month
 
 
-# create resource group
-New-AzResourceGroup -Name $imageResourceGroup -Location $location
-
-
 # setup role def names, these need to be unique
 $timeInt=$(get-date -UFormat "%s")
 $imageRoleDefName="Azure Image Builder Image Def"+$timeInt
@@ -87,15 +83,7 @@ Start-Sleep -s 300
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
-# create gallery
-New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
-
-# create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
-
-
-
-$templateUrl="https://github.com/NakayamaKento/azureimagebuilder/blob/windows_update/Windows%20Update/WindowsUpdate.json"
+$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/windows_update/Windows%20Update/WindowsUpdate.json"
 $templateFilePath = "WindowsUpdate.json"
 
 $sourceimageinfo = Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -GalleryImageVersionName $sourceversion
@@ -111,7 +99,7 @@ Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 ((Get-Content -path $templateFilePath -Raw) -replace '<sharedImageGalName>',$sigGalleryName) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<region1>',$location) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<imgBuilderId>',$identityNameResourceId) | Set-Content -Path $templateFilePath
-((Get-Content -path $templateFilePath -Raw) -replace '<sourceimageid>',$sourceimageinfo) | Set-Content -Path $templateFilePath
+((Get-Content -path $templateFilePath -Raw) -replace '<sourceimageid>',$sourceimageinfo.id) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<month>',$month) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<year>',$year) | Set-Content -Path $templateFilePath
 
