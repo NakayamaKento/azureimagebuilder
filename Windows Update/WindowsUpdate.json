@@ -63,7 +63,7 @@
             [
                 {
                     "type": "SharedImage",
-                    "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
+                    "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>/version/<version>",
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "month": "<month>",
@@ -76,10 +76,8 @@
             ]
             }
         }
-
-    
     ]
-}    
+}
 
 
 

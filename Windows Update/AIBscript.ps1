@@ -48,6 +48,9 @@ $year = (get-date).Year
 # Get Update Month
 $month = (get-date).Month
 
+# Distribute version name
+$distribute_version =  -join ($year, ".", $month, ".", "0")
+
 
 # setup role def names, these need to be unique
 $timeInt=$(get-date -UFormat "%s")
@@ -102,6 +105,7 @@ Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 ((Get-Content -path $templateFilePath -Raw) -replace '<sourceimageid>',$sourceimageinfo.id) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<month>',$month) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<year>',$year) | Set-Content -Path $templateFilePath
+((Get-Content -path $templateFilePath -Raw) -replace '<version>',$distribute_version) | Set-Content -Path $templateFilePath
 
 New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFile $templateFilePath -TemplateParameterObject @{"api-Version" = "2020-02-14"} -imageTemplateName $imageTemplateName -svclocation $location
 
