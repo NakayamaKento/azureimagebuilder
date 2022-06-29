@@ -19,7 +19,7 @@ Import-Module Az.Accounts
 $currentAzContext = Get-AzContext
 
 # destination image resource group
-$imageResourceGroup="avdImage-Rg"
+$imageResourceGroup="windows_update-Rg"
 
 # location (see possible locations in main docs)
 $location="japaneast"
@@ -28,15 +28,19 @@ $location="japaneast"
 $subscriptionID=$currentAzContext.Subscription.Id
 
 # image template name
-$imageTemplateName="avd11ImageTemplate_japanese"
+$imageTemplateName="WindowsUpdate"
 
 # distribution properties object name (runOutput), i.e. this gives you the properties of the managed image on completion
 $runOutputName="sigOutput"
 
-# create resource group
-New-AzResourceGroup -Name $imageResourceGroup -Location $location
+# Azure Compute Gallery name
+$sigGalleryName= "myaibsig"
 
+# Azure Compute Gallery definition name
+$imageDefName ="win11avd"
 
+# Azure Compute Gallery souce version
+$sourceversion = "1.0.0"
 
 
 # setup role def names, these need to be unique
@@ -73,21 +77,10 @@ Start-Sleep -s 300
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
+$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/windows_update/Windows%20Update/WindowsUpdate.json"
+$templateFilePath = "WindowsUpdate.json"
 
-
-$sigGalleryName= "myaibsig"
-$imageDefName ="win11avd"
-
-# create gallery
-New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
-
-# create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
-
-
-
-$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/localize.json"
-$templateFilePath = "localize.json"
+$sourceimageinfo = Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -GalleryImageVersionName $sourceversion
 
 Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 
@@ -98,9 +91,9 @@ Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
 
 ((Get-Content -path $templateFilePath -Raw) -replace '<imageDefName>',$imageDefName) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<sharedImageGalName>',$sigGalleryName) | Set-Content -Path $templateFilePath
-#((Get-Content -path $templateFilePath -Raw) -replace '<region1>',$location) | Set-Content -Path $templateFilePath
+((Get-Content -path $templateFilePath -Raw) -replace '<region1>',$location) | Set-Content -Path $templateFilePath
 ((Get-Content -path $templateFilePath -Raw) -replace '<imgBuilderId>',$identityNameResourceId) | Set-Content -Path $templateFilePath
-
+((Get-Content -path $templateFilePath -Raw) -replace '<sourceimageid>',$sourceimageinfo.id) | Set-Content -Path $templateFilePath
 
 New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFile $templateFilePath -TemplateParameterObject @{"api-Version" = "2020-02-14"} -imageTemplateName $imageTemplateName -svclocation $location
 
@@ -108,7 +101,5 @@ New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFi
 $getStatus=$(Get-AzImageBuilderTemplate -ResourceGroupName $imageResourceGroup -Name $imageTemplateName)
 $getStatus.ProvisioningErrorCode
 $getStatus.ProvisioningErrorMessage
-
-
 
 Start-AzImageBuilderTemplate -ResourceGroupName $imageResourceGroup -Name $imageTemplateName -NoWait
