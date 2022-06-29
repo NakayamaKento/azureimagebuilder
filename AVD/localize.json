@@ -11,7 +11,7 @@
         "svclocation": {
             "type": "string"
         }
-    },  
+    },
     "variables": {
     },
     "resources": [
@@ -33,12 +33,11 @@
                 },
         "properties": {
             "buildTimeoutInMinutes" : 240,
-            "vmProfile": 
+            "vmProfile":
                     {
                     "vmSize": "Standard_D4d_v4",
                     "osDiskSizeGB": 127
                     },
-        
             "source": {
                 "type": "PlatformImage",
                     "publisher": "MicrosoftWindowsDesktop",
@@ -72,11 +71,6 @@
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/JapaneseSetting.ps1"
                     },
                     {
-                        "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting after Japanese Setting'",
-                        "restartTimeout": "5m"
-                    },
-                    {
                         "type": "PowerShell",
                         "name": "SettingTimeZone",
                         "runElevated": true,
@@ -84,8 +78,15 @@
                         "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/SettingTimeZone.ps1"
                     },
                     {
+                        "type": "PowerShell",
+                        "name": "RegSettinge",
+                        "runElevated": true,
+                        "runAsSystem": true,
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/RegSetting.ps1"
+                    },
+                    {
                         "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting after time zone Setting'",
+                        "restartCheckCommand": "write-host 'restarting after Registry Setting'",
                         "restartTimeout": "5m"
                     },
                     {
@@ -106,9 +107,9 @@
                         "updateLimit": 40
                     }
             ],
-            "distribute": 
+            "distribute":
             [
-                {   
+                {
                     "type": "SharedImage",
                     "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
                     "runOutputName": "<runOutputName>",
@@ -123,10 +124,8 @@
             ]
             }
         }
-
-    
     ]
-}    
+}
 
 
 
