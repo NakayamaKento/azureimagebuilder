@@ -48,27 +48,10 @@
             "customize": [
                     {
                         "type": "PowerShell",
-                        "name": "Install_Japanese_language",
-                        "inline": "Install-Language ja-JP",
-                        "runElevated": true
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "SystemPreferredUI",
-                        "inline": "Set-SystemPreferredUILanguage ja-JP",
-                        "runElevated": true
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "set-location",
-                        "inline": "Set-WinHomeLocation -GeoId 0x7a",
-                        "runElevated": true
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "set-location",
-                        "inline": "Copy-UserInternationalSettingsToSystem -WelcomeScreen $True -NewUser $True",
-                        "runElevated": true
+                        "name": "Install_Japanese_language_pack",
+                        "runElevated": true,
+                        "runAsSystem": true,
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win11ja/language.ps1"
                     },
                     {
                         "type": "WindowsUpdate",
