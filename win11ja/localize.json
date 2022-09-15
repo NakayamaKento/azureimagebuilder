@@ -75,7 +75,7 @@
                         "baseosimg": "windows11"
                     },
                     "replicationRegions": [
-                      "<region1>"
+                      "<region>"
                     ]
                 }
             ]
