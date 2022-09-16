@@ -42,7 +42,7 @@
                 "type": "PlatformImage",
                     "publisher": "MicrosoftWindowsDesktop",
                     "offer": "windows11preview",
-                    "sku": "win11-22h2-ent",
+                    "sku": "win11-21h2-ent-cpc-m365",
                     "version": "latest"
             },
             "customize": [
@@ -51,7 +51,7 @@
                         "name": "Install_Japanese_language_pack",
                         "runElevated": true,
                         "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win11ja/language.ps1"
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/DevBox/language.ps1"
                     },
                     {
                         "type": "WindowsUpdate",
