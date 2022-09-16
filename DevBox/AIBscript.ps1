@@ -19,7 +19,7 @@ Import-Module Az.Accounts
 $currentAzContext = Get-AzContext
 
 # destination image resource group
-$imageResourceGroup="myDevBoxImage-Rg"
+$imageResourceGroup="myDevBox-Rg"
 
 # location (see possible locations in main docs)
 $location="eastus"
@@ -71,14 +71,16 @@ Start-Sleep -s 300
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
-$sigGalleryName= "myaibsig"
+$sigGalleryName= "mydevboxsig"
 $imageDefName ="win11ja"
 
 # create gallery
 New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
 
 # create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
+$ConfidentialVMSupported = @{Name='SecurityType';Value='TrustedLaunch'}
+$features = @($ConfidentialVMSupported)
+New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2 -Feature $features
 
 
 
