@@ -19,7 +19,7 @@ Import-Module Az.Accounts
 $currentAzContext = Get-AzContext
 
 # destination image resource group
-$imageResourceGroup="myDevBoxImage-Rg"
+$imageResourceGroup="myDevBox-Rg"
 
 # location (see possible locations in main docs)
 $location="eastus"
@@ -71,7 +71,7 @@ Start-Sleep -s 300
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
-$sigGalleryName= "myaibsig"
+$sigGalleryName= "mydevboxsig"
 $imageDefName ="win11ja"
 
 # create gallery
