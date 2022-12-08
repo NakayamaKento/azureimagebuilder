@@ -28,16 +28,13 @@ $location="japaneast"
 $subscriptionID=$currentAzContext.Subscription.Id
 
 # image template name
-$imageTemplateName="avd11ImageTemplate_japanese"
+$imageTemplateName="avd_win11_ImageTemplate_japanese"
 
 # distribution properties object name (runOutput), i.e. this gives you the properties of the managed image on completion
 $runOutputName="sigOutput"
 
 # create resource group
 New-AzResourceGroup -Name $imageResourceGroup -Location $location
-
-
-
 
 # setup role def names, these need to be unique
 $timeInt=$(get-date -UFormat "%s")
@@ -68,22 +65,24 @@ Invoke-WebRequest -Uri $aibRoleImageCreationUrl -OutFile $aibRoleImageCreationPa
 # create role definition
 New-AzRoleDefinition -InputFile  ./aibRoleImageCreation.json
 
+# wait for creation
 Start-Sleep -s 300
+
 # grant role definition to image builder service principal
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
-
-
-$sigGalleryName= "myaibsig"
-$imageDefName ="win11avd"
+# define azure compute gallery (shared image gallery)
+$sigGalleryName= "mycomputegallery"
+$imageDefName ="avd_win11_japanese"
 
 # create gallery
 New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
 
 # create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
-
+$ConfidentialVMSupported = @{Name='SecurityType';Value='TrustedLaunch'}
+$features = @($ConfidentialVMSupported)
+New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2 -Feature $features
 
 
 $templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/localize.json"
