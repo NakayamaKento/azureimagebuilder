@@ -42,7 +42,7 @@
                 "type": "PlatformImage",
                     "publisher": "MicrosoftWindowsDesktop",
                     "offer": "windows-11",
-                    "sku": "win11-21h2-ent",
+                    "sku": "win11-22h2-avd",
                     "version": "latest"
             },
             "customize": [
@@ -62,49 +62,6 @@
                             "include:$true"
                                     ],
                         "updateLimit": 40
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "Japanese_Setting",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/JapaneseSetting.ps1"
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "SettingTimeZone",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/SettingTimeZone.ps1"
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "RegSettinge",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/RegSetting.ps1"
-                    },
-                    {
-                        "type": "WindowsRestart",
-                        "restartCheckCommand": "write-host 'restarting after Registry Setting'",
-                        "restartTimeout": "5m"
-                    },
-                    {
-                        "type": "PowerShell",
-                        "name": "Uninstall_en-us",
-                        "runElevated": true,
-                        "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/AVD/Uninstalles-es.ps1"
-                    },
-                    {
-                        "type": "WindowsUpdate",
-                        "name": "Finale process",
-                        "searchCriteria": "IsInstalled=0",
-                        "filters": [
-                            "exclude:$_.Title -like '*Preview*'",
-                            "include:$true"
-                                    ],
-                        "updateLimit": 40
                     }
             ],
             "distribute":
@@ -118,7 +75,7 @@
                         "baseosimg": "windows11"
                     },
                     "replicationRegions": [
-                      "<region1>"
+                      "<region>"
                     ]
                 }
             ]
