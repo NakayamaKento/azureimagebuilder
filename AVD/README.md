@@ -5,11 +5,11 @@
 ファイルの説明
 -
 - AIBscript.ps1
-    - Image Builder テンプレートを事項するためのすべてのリソースをデプロイします
+    - Image Builder テンプレートを実行するためのすべてのリソースをデプロイします
 - Installlanguagepack.ps1
-    - 日本語化するための PowerShell スクリプトです。Image Builder が参照します
+    - 日本語化するための PowerShell スクリプトです。Image Builder テンプレートが参照します
 - Uninstalles-es.ps1
-    - 英語の言語パックをアンインストールするスクリプトです。現時点では Image Builder が参照していないです
+    - 英語の言語パックをアンインストールするスクリプトです。現時点では Image Builder は参照していないです
 - aibRoleImageCreation.json
     - image builder を実行するためのカスタムロールです。AIBscript.ps1 で参照します
 - localize.json
