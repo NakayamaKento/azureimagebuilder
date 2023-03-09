@@ -71,18 +71,18 @@ Start-Sleep -s 300
 New-AzRoleAssignment -ObjectId $identityNamePrincipalId -RoleDefinitionName $imageRoleDefName -Scope "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup"
 
 
-$sigGalleryName= "myaibsig"
-$imageDefName ="win11ja"
+$sigGalleryName= "mycomputegallery"
+$imageDefName ="avd_win10_japanese"
 
 # create gallery
 New-AzGallery -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup  -Location $location
 
 # create gallery definition
-New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '11avd' -HyperVGeneration V2
+New-AzGalleryImageDefinition -GalleryName $sigGalleryName -ResourceGroupName $imageResourceGroup -Location $location -Name $imageDefName -OsState generalized -OsType Windows -Publisher 'myCo' -Offer 'Windows' -Sku '10avd' -HyperVGeneration V1
 
 
 
-$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win11ja/localize.json"
+$templateUrl="https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win10ja/localize.json"
 $templateFilePath = "localize.json"
 
 Invoke-WebRequest -Uri $templateUrl -OutFile $templateFilePath -UseBasicParsing
