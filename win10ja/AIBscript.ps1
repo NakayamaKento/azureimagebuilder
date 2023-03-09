@@ -28,7 +28,7 @@ $location="eastus"
 $subscriptionID=$currentAzContext.Subscription.Id
 
 # image template name
-$imageTemplateName="win11ImageTemplate_japanese"
+$imageTemplateName="win10ImageTemplate_japanese"
 
 # distribution properties object name (runOutput), i.e. this gives you the properties of the managed image on completion
 $runOutputName="sigOutput"
