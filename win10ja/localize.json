@@ -41,8 +41,8 @@
             "source": {
                 "type": "PlatformImage",
                     "publisher": "MicrosoftWindowsDesktop",
-                    "offer": "windows11preview",
-                    "sku": "win11-22h2-ent",
+                    "offer": "Windows-10",
+                    "sku": "win10-22h2-avd",
                     "version": "latest"
             },
             "customize": [
@@ -51,7 +51,7 @@
                         "name": "Install_Japanese_language_pack",
                         "runElevated": true,
                         "runAsSystem": true,
-                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win11ja/language.ps1"
+                        "scriptUri": "https://raw.githubusercontent.com/NakayamaKento/azureimagebuilder/main/win10ja/language.ps1"
                     },
                     {
                         "type": "WindowsUpdate",

@@ -1,4 +1,4 @@
-Install-Language ja-JP
+Install-Language ja-JP -CopyToSettings
 
 #Get-InstalledLanguage
 
